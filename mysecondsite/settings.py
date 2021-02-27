@@ -25,7 +25,7 @@ SECRET_KEY = 'kz2)cl6wgo98rqczjd(#8enq!iqzz)bqkf^+sm68g&y6dpatp@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [http://imortem.pythonanywhere.com/]
+ALLOWED_HOSTS = ["imortem.pythonanywhere.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
