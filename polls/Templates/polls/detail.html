@@ -1,24 +1,25 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Title</title>
+    <head>
+        <title>Title</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+<body>
+    <h1>{{question.text}}</h1>
     {% if question.choice_set.all %}
-    <ol>
-    {% for c in question.choice_set.all %}
-    <input type="checkbox" id="c{{c.pk}}"> <label for="c{{c.pk}}">{{c.text}}</label>
-    <br>
-    {% endfor %}
-
-    <button type="submit">Vote</button>
+    <form action="{% url 'polls:vote' question.pk %}" q.pk method="POST">
+        {% csrf_token %}
+        {% for c in question.choice_set.all %}
+        <input type="checkbox" name="choice" value="{{c.pk}}" id ="c{{c.pk}}"> <label for="c{{c.pk}}">{{c.text}}</label>
+        <br>
+        {% endfor %}
+        <button  type="submit">Vote</button>
+    </form>
     {% endif %}    
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
